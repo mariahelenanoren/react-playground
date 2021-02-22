@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "npm-run-all --parallel build serve",
-    "serve": "live-server --ignore=node_modules,/dist",
+    "serve": "live-server --watch=index.html,dist",
     "build": "webpack --watch"
   },
   "repository": {

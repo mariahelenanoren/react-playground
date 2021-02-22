@@ -1,5 +1,5 @@
 import { addEmitHelper } from "typescript";
 
 export function helper() {
-  console.log("helper");
+  console.log("helper3");
 }
