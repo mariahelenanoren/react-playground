@@ -1,6 +1,6 @@
 import React, { CSSProperties } from "react";
 import Navbar from "./Navbar";
-import Content from "./Content";
+import Content from "./ViewContainer";
 
 class Layout extends React.Component {
   render() {

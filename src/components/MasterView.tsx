@@ -1,18 +1,11 @@
 import React, { CSSProperties } from "react";
-import SectionItem from "./SectionItem";
+import SectionItem from "./NavigationItem";
 
-interface ItemsProps {
-  item: [
-    {
-      title: string;
-      image: HTMLImageElement;
-    }
-  ];
-}
-class Content extends React.Component {
+class MasterView extends React.Component {
   render() {
+    const e = "i";
     return (
-      <div style={contentContainer}>
+      <div style={master}>
         <SectionItem title="forest" image="../../assets/forest.jpg" />
         <SectionItem title="sky" image="../../assets/sky.jpg" />
         <SectionItem title="desert" image="../../assets/desert.jpg" />
@@ -21,12 +14,11 @@ class Content extends React.Component {
   }
 }
 
-const contentContainer: CSSProperties = {
+const master: CSSProperties = {
   display: "flex",
   height: "100%",
-  maxHeight: "calc(100% - 4rem)",
   padding: "0.5rem",
   flexDirection: "column",
 };
 
-export default Content;
+export default MasterView;
