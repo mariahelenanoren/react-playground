@@ -1,22 +1,18 @@
 import React, { CSSProperties } from "react";
 import NavigationItem from "./NavigationItem";
 
-interface Props {}
-
-interface State {
-  id: string[];
-}
-
-export default function MasterView() {
-  const navIds = ["forest", "sky", "desert"];
-
+export default function MasterView(props: Props) {
   return (
     <div style={master}>
-      {navIds.map((value) => (
+      {props.navIds.map((value) => (
         <NavigationItem id={value} key={value} />
       ))}
     </div>
   );
+}
+
+interface Props {
+  navIds: string[];
 }
 
 const master: CSSProperties = {
