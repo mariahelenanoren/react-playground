@@ -1,20 +1,27 @@
 import React, { CSSProperties } from "react";
 
 interface SectionProps {
-  title: string;
-  image: string;
+  id: string;
 }
 
-class SectionItem extends React.Component<SectionProps> {
-  constructor(props: SectionProps) {
+interface State {
+  imageSrc: string;
+}
+
+class SectionItem extends React.Component<SectionProps, State> {
+  constructor(props: SectionProps, state: State) {
     super(props);
+
+    this.state = {
+      imageSrc: `../assets/${props.id}.jpg`,
+    };
   }
 
   render() {
     return (
       <div style={section}>
-        <h2 style={sectionTitle}>{this.props.title}</h2>
-        <img src={this.props.image} style={sectionImage}></img>
+        <h2 style={sectionTitle}>{this.props.id}</h2>
+        <img src={this.state.imageSrc} style={sectionImage}></img>
       </div>
     );
   }

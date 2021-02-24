@@ -1,17 +1,22 @@
 import React, { CSSProperties } from "react";
-import SectionItem from "./NavigationItem";
+import NavigationItem from "./NavigationItem";
 
-class MasterView extends React.Component {
-  render() {
-    const e = "i";
-    return (
-      <div style={master}>
-        <SectionItem title="forest" image="../../assets/forest.jpg" />
-        <SectionItem title="sky" image="../../assets/sky.jpg" />
-        <SectionItem title="desert" image="../../assets/desert.jpg" />
-      </div>
-    );
-  }
+interface Props {}
+
+interface State {
+  id: string[];
+}
+
+export default function MasterView() {
+  const navIds = ["forest", "sky", "desert"];
+
+  return (
+    <div style={master}>
+      {navIds.map((value) => (
+        <NavigationItem id={value} key={value} />
+      ))}
+    </div>
+  );
 }
 
 const master: CSSProperties = {
@@ -20,5 +25,3 @@ const master: CSSProperties = {
   padding: "0.5rem",
   flexDirection: "column",
 };
-
-export default MasterView;

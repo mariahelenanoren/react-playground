@@ -6,7 +6,7 @@ class Content extends React.Component {
   render() {
     return (
       <div style={contentContainer}>
-        <DetailView />
+        <MasterView />
       </div>
     );
   }
