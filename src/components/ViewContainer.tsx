@@ -1,12 +1,16 @@
 import React, { CSSProperties } from "react";
 import MasterView from "./MasterView";
 import DetailView from "./DetailView";
+import { Switch, Route } from "react-router-dom";
 
 class Content extends React.Component {
   render() {
     return (
       <div style={contentContainer}>
-        <MasterView />
+        <Switch>
+          <Route path="/" component={MasterView} exact />
+          <Route path="details" component={DetailView} />
+        </Switch>
       </div>
     );
   }

@@ -1,13 +1,16 @@
 import React, { CSSProperties } from "react";
 import Navbar from "./Navbar";
 import Content from "./ViewContainer";
+import { BrowserRouter as BrowserRouter } from "react-router-dom";
 
 class Layout extends React.Component {
   render() {
     return (
       <div style={mainLayout}>
-        <Navbar />
-        <Content />
+        <BrowserRouter>
+          <Navbar />
+          <Content />
+        </BrowserRouter>
       </div>
     );
   }

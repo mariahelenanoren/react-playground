@@ -1,15 +1,8 @@
 import React, { CSSProperties } from "react";
-
-interface SectionProps {
-  id: string;
-}
-
-interface State {
-  imageSrc: string;
-}
+import { Link } from "react-router-dom";
 
 class SectionItem extends React.Component<SectionProps, State> {
-  constructor(props: SectionProps, state: State) {
+  constructor(props: SectionProps) {
     super(props);
 
     this.state = {
@@ -19,12 +12,20 @@ class SectionItem extends React.Component<SectionProps, State> {
 
   render() {
     return (
-      <div style={section}>
+      <Link to={this.props.id} style={section}>
         <h2 style={sectionTitle}>{this.props.id}</h2>
         <img src={this.state.imageSrc} style={sectionImage}></img>
-      </div>
+      </Link>
     );
   }
+}
+
+interface SectionProps {
+  id: string;
+}
+
+interface State {
+  imageSrc: string;
 }
 
 const section: CSSProperties = {
@@ -34,6 +35,7 @@ const section: CSSProperties = {
   alignItems: "center",
   justifyContent: "center",
   position: "relative",
+  color: "#ffff",
   boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.3)",
 };
 
