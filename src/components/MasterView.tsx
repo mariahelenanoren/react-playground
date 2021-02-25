@@ -1,12 +1,15 @@
 import React, { CSSProperties } from "react";
 import NavigationItem from "./NavigationItem";
+import ErrorBoundary from "./ErrorBoundary";
 
 export default function MasterView(props: Props) {
   return (
     <div style={master}>
-      {props.navIds.map((value) => (
-        <NavigationItem id={value} key={value} />
-      ))}
+      <ErrorBoundary>
+        {props.navIds.map((value) => (
+          <NavigationItem id={value} key={value} />
+        ))}
+      </ErrorBoundary>
     </div>
   );
 }

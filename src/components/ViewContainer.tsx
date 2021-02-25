@@ -1,7 +1,8 @@
 import React, { CSSProperties, Suspense } from "react";
-import MasterView from "./MasterView";
-const DetailView = React.lazy(() => import("./DetailView"));
 import { Switch, Route, Router } from "react-router-dom";
+import ErrorBoundary from "./ErrorBoundary";
+const MasterView = React.lazy(() => import("./MasterView"));
+const DetailView = React.lazy(() => import("./DetailView"));
 
 class Content extends React.Component<Props, State> {
   constructor(props: Props, state: State) {
@@ -16,20 +17,22 @@ class Content extends React.Component<Props, State> {
     return (
       <div style={contentContainer}>
         <Suspense fallback={<div>Loading...</div>}>
-          <Switch>
-            <Route path="/" exact>
-              <MasterView navIds={this.state.navIds} />
-            </Route>
-            {this.state.navIds.map((id) => (
-              /* <Route path="/:name" component={DetailView} /> */
-              <Route path={"/" + id} key={id}>
-                <DetailView id={id} />
+          <ErrorBoundary>
+            <Switch>
+              <Route path="/" exact>
+                <MasterView navIds={this.state.navIds} />
               </Route>
-            ))}
-            <h2>
-              You've tried to access a page which doesn't exist – error 404
-            </h2>
-          </Switch>
+              {this.state.navIds.map((id) => (
+                /* <Route path="/:name" component={DetailView} /> */
+                <Route path={"/" + id} key={id}>
+                  <DetailView id={id} />
+                </Route>
+              ))}
+              <h2>
+                You've tried to access a page which doesn't exist – error 404
+              </h2>
+            </Switch>
+          </ErrorBoundary>
         </Suspense>
       </div>
     );
