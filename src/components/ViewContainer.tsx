@@ -1,6 +1,6 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, Suspense } from "react";
 import MasterView from "./MasterView";
-import DetailView from "./DetailView";
+const DetailView = React.lazy(() => import("./DetailView"));
 import { Switch, Route, Router } from "react-router-dom";
 
 class Content extends React.Component<Props, State> {
@@ -15,18 +15,22 @@ class Content extends React.Component<Props, State> {
   render() {
     return (
       <div style={contentContainer}>
-        <Switch>
-          <Route path="/" exact>
-            <MasterView navIds={this.state.navIds} />
-          </Route>
-          {this.state.navIds.map((id) => (
-            <Route path="/:name" component={DetailView} />
-            /* <Route path={"/" + id} key={id}>
-              <DetailView id={id} />
-            </Route> */
-          ))}
-          <h2>You've tried to access a page which doesn't exist – error 404</h2>
-        </Switch>
+        <Suspense fallback={<div>Loading...</div>}>
+          <Switch>
+            <Route path="/" exact>
+              <MasterView navIds={this.state.navIds} />
+            </Route>
+            {this.state.navIds.map((id) => (
+              /* <Route path="/:name" component={DetailView} /> */
+              <Route path={"/" + id} key={id}>
+                <DetailView id={id} />
+              </Route>
+            ))}
+            <h2>
+              You've tried to access a page which doesn't exist – error 404
+            </h2>
+          </Switch>
+        </Suspense>
       </div>
     );
   }

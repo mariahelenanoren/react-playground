@@ -5,19 +5,11 @@ class DetailView extends React.Component<Props, State> {
   constructor(props: Props, state: State) {
     super(props);
     this.state = {
-      name: this.props.match.params.name,
-      imageSrc: "",
+      imageSrc: `../assets/${this.props.id}.jpg`,
     };
   }
 
-  componentDidMount() {
-    this.setState({
-      imageSrc: `../assets/${this.state.name}.jpg`,
-    });
-  }
-
   render() {
-    console.log(this.props.match.params.name);
     return (
       <div style={detail}>
         <img style={detailImage} src={this.state.imageSrc}></img>
@@ -26,10 +18,11 @@ class DetailView extends React.Component<Props, State> {
   }
 }
 
-interface Props extends RouteComponentProps<{ name: string }> {}
+interface Props {
+  id: string;
+}
 
 interface State {
-  name: string;
   imageSrc: string;
 }
 
