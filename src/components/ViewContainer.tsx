@@ -22,9 +22,7 @@ class ViewContainer extends React.Component<Props, State> {
               <MasterView navIds={this.state.navIds} />
             </Route>
             <ErrorBoundary>
-              {this.state.navIds.map((id) => (
-                <Route path="/:name?" key={id} component={DetailView} />
-              ))}
+              <Route path="/:name?" component={DetailView} />
             </ErrorBoundary>
             <h2>
               You've tried to access a page which doesn't exist – error 404
