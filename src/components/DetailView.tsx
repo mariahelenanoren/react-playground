@@ -38,8 +38,11 @@ class DetailView extends React.Component<Props, State> {
         </button>
         <img style={detailImage} src={this.state.imageSrc}></img>
         {this.state.isModalOpen ? (
-          <Modal persistent shouldClose={this.toggleModal}>
-            <h3>Modal opened from {this.props.match.params.name}</h3>
+          <Modal shouldClose={this.toggleModal}>
+            <p>
+              Modal opened from&nbsp;
+              <span style={highlight}>{this.props.match.params.name}</span>
+            </p>
           </Modal>
         ) : null}
       </div>
@@ -75,7 +78,17 @@ const detailImage: CSSProperties = {
 
 const button: CSSProperties = {
   position: "absolute",
+  padding: "0.5rem 1rem",
+  border: "none",
+  backgroundColor: "white",
+  color: "black",
+  boxShadow: "0px 1px 4px rgba(0, 0, 0, 0.3)",
+  cursor: "pointer",
   zIndex: 100,
+};
+
+const highlight: CSSProperties = {
+  color: "orange",
 };
 
 export default DetailView;

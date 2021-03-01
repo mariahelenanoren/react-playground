@@ -21,7 +21,9 @@ class Modal extends React.Component<Props> {
   }
 
   onClick() {
-    this.props.shouldClose();
+    if (!this.props.persistent) {
+      this.props.shouldClose();
+    }
   }
 
   render() {
