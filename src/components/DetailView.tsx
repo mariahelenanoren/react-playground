@@ -15,30 +15,30 @@ class DetailView extends React.Component<Props, State> {
       isModalOpen: false,
       imageSrc: `../assets/${this.props.match.params.name}.jpg`,
     };
-    this.openModal = this.openModal.bind(this);
-    this.closeModal = this.closeModal.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
-  openModal() {
-    this.setState({
-      isModalOpen: true,
-    });
-  }
-  closeModal() {
-    this.setState({
-      isModalOpen: false,
-    });
+  toggleModal() {
+    {
+      this.state.isModalOpen
+        ? this.setState({
+            isModalOpen: false,
+          })
+        : this.setState({
+            isModalOpen: true,
+          });
+    }
   }
 
   render() {
     return (
       <div style={detailContainer}>
-        <button onClick={this.openModal} style={button}>
+        <button onClick={this.toggleModal} style={button}>
           Open Modal
         </button>
         <img style={detailImage} src={this.state.imageSrc}></img>
         {this.state.isModalOpen ? (
-          <Modal persistent shouldClose={this.closeModal}>
+          <Modal persistent shouldClose={this.toggleModal}>
             <h3>Modal opened from {this.props.match.params.name}</h3>
           </Modal>
         ) : null}
