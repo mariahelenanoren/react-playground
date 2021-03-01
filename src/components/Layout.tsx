@@ -1,6 +1,6 @@
 import React, { CSSProperties } from "react";
 import Navbar from "./Navbar";
-import Content from "./ViewContainer";
+import ViewContainer from "./ViewContainer";
 import { BrowserRouter as BrowserRouter } from "react-router-dom";
 
 class Layout extends React.Component {
@@ -9,7 +9,7 @@ class Layout extends React.Component {
       <div style={mainLayout}>
         <BrowserRouter>
           <Navbar />
-          <Content />
+          <ViewContainer />
         </BrowserRouter>
       </div>
     );

@@ -1,11 +1,16 @@
 import React, { CSSProperties } from "react";
 import { RouteComponentProps } from "react-router-dom";
 
+interface Item {
+  name: string;
+}
+interface Props extends RouteComponentProps<Item> {}
+
 class DetailView extends React.Component<Props, State> {
-  constructor(props: Props, state: State) {
+  constructor(props: Props) {
     super(props);
     this.state = {
-      imageSrc: `../assets/${this.props.id}.jpg`,
+      imageSrc: `../assets/${this.props.match.params.name}.jpg`,
     };
   }
 

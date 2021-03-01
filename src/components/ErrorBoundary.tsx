@@ -12,8 +12,8 @@ class ErrorBoundary extends React.Component<Props, State> {
     return { hasError: true };
   }
 
-  reloadPage() {
-    window.location.reload();
+  navigateBack() {
+    history.back();
   }
 
   render() {
@@ -22,8 +22,8 @@ class ErrorBoundary extends React.Component<Props, State> {
       return (
         <div style={errorContainer}>
           <p>Something went wrong...</p>
-          <button style={reloadButton} onClick={this.reloadPage}>
-            Reload page
+          <button style={reloadButton} onClick={this.navigateBack}>
+            Go back
           </button>
         </div>
       );
