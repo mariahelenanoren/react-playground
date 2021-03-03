@@ -42,6 +42,7 @@ interface State {
 
 const contentContainer: CSSProperties = {
   height: "calc(100% - 4rem)",
+  overflow: "hidden",
 };
 
 export default ViewContainer;

@@ -70,13 +70,10 @@ interface State {
   imageSrc: string;
 }
 
-const detailContent: CSSProperties = {
-  padding: "1.5rem 1.2rem",
-  backgroundColor: "rgba(0, 0, 0, 0.5)",
-};
-
 const detailContainer: CSSProperties = {
   position: "relative",
+  height: "100%",
+  overflowY: "scroll",
   zIndex: 100,
 };
 
@@ -87,6 +84,11 @@ const detailImage: CSSProperties = {
   objectFit: "cover",
   objectPosition: "center",
   zIndex: -1,
+};
+
+const detailContent: CSSProperties = {
+  padding: "1.5rem 1.2rem",
+  backgroundColor: "rgba(0, 0, 0, 0.5)",
 };
 
 const highlight: CSSProperties = {

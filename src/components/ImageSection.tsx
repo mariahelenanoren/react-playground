@@ -1,16 +1,33 @@
 import React, { CSSProperties } from "react";
 import Key from "./Key";
+import Modal from "./Modal";
 
 export default class ImageSection extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
     this.state = {
+      isModalOpen: false,
+      modalImage: "",
       loading: true,
       images: [],
     };
 
     this.getImages = this.getImages.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
+  }
+
+  toggleModal(url: string) {
+    {
+      this.state.isModalOpen
+        ? this.setState({
+            isModalOpen: false,
+          })
+        : this.setState({
+            modalImage: url,
+            isModalOpen: true,
+          });
+    }
   }
 
   async getImages() {
@@ -36,8 +53,17 @@ export default class ImageSection extends React.Component<Props, State> {
     return (
       <div style={imageContainer}>
         {this.state.images.map((image) => (
-          <img style={imageStyle} src={image.urls.regular}></img>
+          <img
+            style={imageStyle}
+            onClick={() => this.toggleModal(image.urls.regular)}
+            src={image.urls.regular}
+          ></img>
         ))}
+        {this.state.isModalOpen ? (
+          <Modal shouldClose={() => this.toggleModal("")}>
+            <img style={modalImage} src={this.state.modalImage}></img>
+          </Modal>
+        ) : null}
       </div>
     );
   }
@@ -48,6 +74,8 @@ interface Props {
 }
 
 interface State {
+  isModalOpen: boolean;
+  modalImage: string;
   loading: boolean;
   images: Url[];
 }
@@ -72,4 +100,11 @@ const imageStyle: CSSProperties = {
   height: "100%",
   objectFit: "cover",
   objectPosition: "center",
+  cursor: "pointer",
+};
+
+const modalImage: CSSProperties = {
+  height: "100%",
+  maxWidth: "100%",
+  padding: "4rem",
 };
