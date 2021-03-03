@@ -18,7 +18,6 @@ class Layout extends React.Component {
 
 const mainLayout: CSSProperties = {
   height: "100%",
-  background: "#363636",
   color: "white",
 };
 

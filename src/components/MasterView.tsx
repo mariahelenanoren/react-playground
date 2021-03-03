@@ -23,4 +23,5 @@ const master: CSSProperties = {
   height: "100%",
   padding: "0.5rem",
   flexDirection: "column",
+  background: "#363636",
 };
