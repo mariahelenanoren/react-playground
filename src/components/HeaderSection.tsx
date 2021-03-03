@@ -20,10 +20,10 @@ const headerContainer: CSSProperties = {
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
-  padding: "0.8rem 0",
 };
 
 const title: CSSProperties = {
+  margin: 0,
   fontSize: "1.5rem",
   textTransform: "uppercase",
 };
