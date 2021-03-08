@@ -1,5 +1,6 @@
 import React, { CSSProperties } from "react";
 import ReactDOM from "react-dom";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 class Modal extends React.Component<Props> {
   element: HTMLDivElement;
@@ -27,11 +28,21 @@ class Modal extends React.Component<Props> {
   }
 
   render() {
-    console.log(this.props);
     return ReactDOM.createPortal(
-      <div style={modal} onClick={this.onClick}>
-        {this.props.children}
-      </div>,
+      <ThemeContext.Consumer>
+        {(value) => (
+          <div
+            style={{
+              ...modal,
+              backgroundColor: value.overlay,
+              color: value.textColor,
+            }}
+            onClick={this.onClick}
+          >
+            {this.props.children}
+          </div>
+        )}
+      </ThemeContext.Consumer>,
       this.element
     );
   }

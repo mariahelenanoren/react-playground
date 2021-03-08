@@ -1,13 +1,25 @@
 import React, { CSSProperties } from "react";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 export default function HeaderSection(props: Props) {
   return (
-    <div style={headerContainer}>
-      <h2 style={title}>{props.title}</h2>
-      <button onClick={props.toggleModal} style={button}>
-        Open Modal
-      </button>
-    </div>
+    <ThemeContext.Consumer>
+      {(value) => (
+        <div style={headerContainer}>
+          <h2 style={title}>{props.title}</h2>
+          <button
+            onClick={props.toggleModal}
+            style={{
+              ...button,
+              backgroundColor: value.primaryColor,
+              color: value.textColor,
+            }}
+          >
+            Open Modal
+          </button>
+        </div>
+      )}
+    </ThemeContext.Consumer>
   );
 }
 

@@ -3,6 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import ErrorBoundary from "./ErrorBoundary";
 const MasterView = React.lazy(() => import("./MasterView"));
 const DetailView = React.lazy(() => import("./DetailView"));
+import { ThemeContext } from "../contexts/ThemeContext";
 
 class ViewContainer extends React.Component<Props, State> {
   constructor(props: Props) {
@@ -15,21 +16,30 @@ class ViewContainer extends React.Component<Props, State> {
 
   render() {
     return (
-      <div style={contentContainer}>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Switch>
-            <Route path="/" exact>
-              <MasterView navIds={this.state.navIds} />
-            </Route>
-            <ErrorBoundary>
-              <Route path="/:name?" component={DetailView} />
-            </ErrorBoundary>
-            <h2>
-              You've tried to access a page which doesn't exist – error 404
-            </h2>
-          </Switch>
-        </Suspense>
-      </div>
+      <ThemeContext.Consumer>
+        {(value) => (
+          <div
+            style={{
+              ...contentContainer,
+              backgroundColor: value.secondaryColor,
+            }}
+          >
+            <Suspense fallback={<div>Loading...</div>}>
+              <Switch>
+                <Route path="/" exact>
+                  <MasterView navIds={this.state.navIds} />
+                </Route>
+                <ErrorBoundary>
+                  <Route path="/:name?" component={DetailView} />
+                </ErrorBoundary>
+                <h2>
+                  You've tried to access a page which doesn't exist – error 404
+                </h2>
+              </Switch>
+            </Suspense>
+          </div>
+        )}
+      </ThemeContext.Consumer>
     );
   }
 }

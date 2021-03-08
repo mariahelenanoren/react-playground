@@ -92,7 +92,7 @@ const imageContainer: CSSProperties = {
   gridTemplateColumns: "repeat(auto-fit, minmax(20rem, 1fr))",
   gap: "1rem",
   gridAutoRows: "20rem",
-  backgroundColor: "#000000",
+  backgroundColor: "inherit",
 };
 
 const imageStyle: CSSProperties = {

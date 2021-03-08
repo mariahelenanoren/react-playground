@@ -24,7 +24,6 @@ export default class TextSection extends React.Component<Props, State> {
           this.props.keyWord +
           "&origin=*&format=json&formatversion=2"
       );
-      console.log(response);
       this.setState({
         text: response.data.query.pages[0].extract,
         loading: false,
@@ -66,5 +65,7 @@ const textContainer: CSSProperties = {
 
 const text: CSSProperties = {
   margin: "0",
+  lineHeight: "1.2",
+  color: "inherit",
   fontSize: "0.8rem",
 };

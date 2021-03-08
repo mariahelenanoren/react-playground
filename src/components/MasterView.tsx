@@ -1,16 +1,21 @@
 import React, { CSSProperties } from "react";
 import NavigationItem from "./NavigationItem";
 import ErrorBoundary from "./ErrorBoundary";
+import { ThemeContext } from "../contexts/ThemeContext";
 
 export default function MasterView(props: Props) {
   return (
-    <div style={master}>
-      <ErrorBoundary>
-        {props.navIds.map((value) => (
-          <NavigationItem id={value} key={value} />
-        ))}
-      </ErrorBoundary>
-    </div>
+    <ThemeContext.Consumer>
+      {(value) => (
+        <div style={{ ...master, backgroundColor: value.secondaryColor }}>
+          <ErrorBoundary>
+            {props.navIds.map((value) => (
+              <NavigationItem id={value} key={value} />
+            ))}
+          </ErrorBoundary>
+        </div>
+      )}
+    </ThemeContext.Consumer>
   );
 }
 
@@ -23,5 +28,4 @@ const master: CSSProperties = {
   height: "100%",
   padding: "0.5rem",
   flexDirection: "column",
-  background: "#363636",
 };
